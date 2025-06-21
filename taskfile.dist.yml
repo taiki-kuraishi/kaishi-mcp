@@ -11,3 +11,11 @@ tasks:
     desc: Format code
     cmds:
       - bunx biome format --fix
+
+  lint:
+    desc: Lint code
+    cmds:
+      - bunx biome format --fix
+      - bun editorconfig-checker
+      - turbo check:knip
+      - turbo check:type

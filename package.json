@@ -3,9 +3,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "check:knip": "knip-bun --cache --cache-location=.knip",
-
-    "lint": "biome check && editorconfig-checker && knip-bun"
+    "check:knip": "knip-bun --cache --cache-location=.knip"
   },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",

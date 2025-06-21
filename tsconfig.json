@@ -36,6 +36,6 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true
   },
-  "include": ["**/*"],
+  "include": [],
   "exclude": ["apps/**", "packages/**"]
 }

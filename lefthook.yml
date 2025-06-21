@@ -1,0 +1,14 @@
+pre-commit:
+  parallel: true
+  commands:
+    format:
+      stage_fixed: true
+      run: bunx biome check --fix --unsafe
+    editorconfig-checker:
+      run: bun editorconfig-checker
+    knip:
+      run: turbo check:knip
+    type:
+      run: turbo check:type
+    cf-typegen:
+      run: turbo cf-typegen

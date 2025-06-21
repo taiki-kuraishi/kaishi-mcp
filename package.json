@@ -1,0 +1,22 @@
+{
+  "name": "kaishi-mcp",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "check:knip": "knip-bun --cache --cache-location=.knip"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@types/bun": "latest",
+    "editorconfig-checker": "^6.0.1",
+    "knip": "^5.61.2",
+    "lefthook": "^1.11.14",
+    "turbo": "^2.5.4",
+    "vitest": "^3.2.4"
+  },
+  "peerDependencies": {
+    "typescript": "latest"
+  },
+  "packageManager": "bun@1.2.0",
+  "workspaces": ["apps/*", "packages/*"]
+}

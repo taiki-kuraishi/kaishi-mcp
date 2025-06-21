@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "types": ["@cloudflare/workers-types/2023-07-01", "node"],
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": ["src/*"],
+      "@script/*": ["script/*"],
+      "@test/*": ["test/*"]
+    },
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "declaration": true,
+    "emitDeclarationOnly": false
+  },
+  "include": ["worker-configuration.d.ts", "src/**/*.ts"],
+  "exclude": [],
+  "extends": "../../tsconfig.json"
+}

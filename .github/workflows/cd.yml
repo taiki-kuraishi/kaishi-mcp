@@ -1,0 +1,165 @@
+name: cd
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  global-ci:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    name: global-ci
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cache turbo build setup
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - run: bun install --frozen-lockfile
+      - run: bunx biome lint
+      - run: bunx biome format
+      - run: bun editorconfig-checker
+      - run: bun turbo check:knip
+      - run: bun turbo check:type
+
+  change-detection:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    name: change-detection
+    outputs:
+      remote-mcp: ${{ steps.change-detection.outputs.remote-mcp }}
+      syllabus-api: ${{ steps.change-detection.outputs.syllabus-api }}
+      supabase: ${{ steps.change-detection.outputs.supabase }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: change-detection
+        with:
+          filters: |
+            remote-mcp:
+              - 'apps/remote-mcp/**'
+            syllabus-api:
+              - 'apps/syllabus-api/**'
+            supabase:
+              - 'apps/syllabus-api/supabase/**'
+
+  remote-mcp-ci:
+    needs: change-detection
+    if: needs.change-detection.outputs.remote-mcp == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    name: remote-mcp-ci
+    defaults:
+      run:
+        working-directory: apps/remote-mcp
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Cache turbo build setup
+        uses: actions/cache/restore@v4
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+      - run: bun install --frozen-lockfile
+      - run: bun run test
+
+  syllabus-api-ci:
+    needs: change-detection
+    if: needs.change-detection.outputs.syllabus-api == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    name: syllabus-api-ci
+    defaults:
+      run:
+        working-directory: apps/syllabus-api
+    services:
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: "postgres"
+          POSTGRES_PASSWORD: "postgres"
+          POSTGRES_DB: "postgres"
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5433:5432
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Cache turbo build setup
+        uses: actions/cache/restore@v4
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+      - run: bun install --frozen-lockfile
+      - name: Run Migrations
+        env:
+          DB_URL: postgresql://postgres:postgres@127.0.0.1:5433/postgres
+          MIGRATION_DIR: supabase/migrations
+        run: |
+          bun script/database/migrate.ts ${{ env.DB_URL }} ${{ env.MIGRATION_DIR }}
+      - run: bun vitest run
+
+  supabase-ci:
+    needs: change-detection
+    if: needs.change-detection.outputs.supabase == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    name: supabase-ci
+    defaults:
+      run:
+        working-directory: apps/syllabus-api
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+      SUPABASE_PROJECT_ID: ${{ secrets.SUPABASE_PROJECT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+      - run: supabase link --project-ref ${{ env.SUPABASE_PROJECT_ID }}
+      - run: supabase db start
+      - run: supabase db lint
+      - run: supabase test db
+      - run: supabase db push --dry-run
+
+  supabase-deploy:
+    needs:
+      - global-ci
+      - remote-mcp-ci
+      - syllabus-api-ci
+      - supabase-ci
+    if: needs.supabase-ci.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    name: supabase-deploy
+    env:
+      SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
+      SUPABASE_PROJECT_ID: ${{ secrets.SUPABASE_PROJECT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: supabase/setup-cli@v1
+        with:
+          version: latest
+      - run: supabase link --project-ref ${{ env.SUPABASE_PROJECT_ID }}
+      - run: supabase db push

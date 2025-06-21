@@ -1,0 +1,64 @@
+version: '3'
+
+vars:
+  MIGRATION_DIR: supabase/migrations
+
+tasks:
+  install:
+    desc: Install dependencies and setup environment
+    cmds:
+      - bun install --frozen-lockfile
+      - bun lefthook install
+
+  format:
+    desc: Format code
+    cmds:
+      - bunx biome format --fix
+
+  cloudflare-type-generate:
+    desc: Generate Cloudflare types
+    cmds:
+      - bun wrangler types --strict-vars false
+
+  lint:
+    desc: Run linters
+    cmds:
+      - bun tsc
+      - task: cloudflare-type-generate
+      - bunx biome check --fix --unsafe
+      - bun editorconfig-checker
+      - bun knip-bun
+
+  dev:
+    desc: Start local development environment with Docker
+    vars:
+      DEV_DB_URL: postgresql://postgres:postgres@127.0.0.1:5432/postgres
+    cmds:
+      - docker compose up -d dev-db
+      - defer: docker compose down dev-db -v
+      - docker compose exec dev-db sh -c 'until pg_isready -U postgres; do sleep 1; done'
+      - bun script/database/migrate.ts {{.DEV_DB_URL}} {{.MIGRATION_DIR}}
+      - bun script/database/seed.ts {{.DEV_DB_URL}}
+      - bun wrangler dev --env dev
+
+  dev:supabase:
+    desc: Start Supabase local development environment
+    vars:
+      LOCAL_SUPABASE_URL: postgresql://postgres:postgres@127.0.0.1:54322/postgres
+    cmds:
+      - bunx supabase start
+      - defer: bunx supabase stop
+      - bunx supabase db reset
+      - bun /script/database/seed.ts {{.LOCAL_SUPABASE_URL}}
+      - bun wrangler dev --env local-supabase
+
+  test:
+    desc: Run tests
+    vars:
+      TEST_DB_URL: postgresql://postgres:postgres@127.0.0.1:5433/postgres
+    cmds:
+      - docker compose up -d test-db
+      - defer: docker compose down test-db -v
+      - docker compose exec test-db sh -c 'until pg_isready -U postgres; do sleep 1; done'
+      - bun script/database/migrate.ts {{.TEST_DB_URL}} {{.MIGRATION_DIR}}
+      - bun vitest run

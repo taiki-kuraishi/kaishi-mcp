@@ -1,0 +1,27 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "kaishi-syllabus-api-server",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-05-07",
+  "compatibility_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true
+  },
+  "env": {
+    "dev": {
+      "vars": {
+        "DATABASE_URL": "postgresql://postgres:postgres@127.0.0.1:5432/postgres"
+      }
+    },
+    "local-supabase": {
+      "vars": {
+        "DATABASE_URL": "postgresql://postgres:postgres@127.0.0.1:54322/postgres"
+      }
+    },
+    "test": {
+      "vars": {
+        "DATABASE_URL": "postgresql://postgres:postgres@127.0.0.1:5433/postgres"
+      }
+    }
+  }
+}

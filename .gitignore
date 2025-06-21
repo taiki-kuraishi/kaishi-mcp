@@ -7,4 +7,13 @@ node_modules
 # Finder (MacOS) folder config
 .DS_Store
 
+# cache
 .turbo
+.knip
+
+# build
+dist
+
+# env
+.env
+.env.var

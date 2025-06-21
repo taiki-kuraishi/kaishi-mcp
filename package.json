@@ -2,6 +2,11 @@
   "name": "kaishi-mcp",
   "type": "module",
   "private": true,
+  "scripts": {
+    "check:knip": "knip-bun --cache --cache-location=.knip",
+
+    "lint": "biome check && editorconfig-checker && knip-bun"
+  },
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@types/bun": "latest",

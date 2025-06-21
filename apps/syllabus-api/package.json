@@ -3,22 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "check:knip": "knip-bun --cache --cache-location=.knip",
+    "check:type": "tsc --noEmit",
+    "cf-typegen": "wrangler types",
+
     "db:generate": "drizzle-kit generate --config=./src/libs/drizzle-orm/drizzle.config.ts",
     "db:migrate": "supabase migration up"
-  },
-  "devDependencies": {
-    "@cloudflare/vitest-pool-workers": "^0.8.41",
-    "@cloudflare/workers-types": "^4.20250619.0",
-    "@types/node": "^22.15.30",
-    "drizzle-kit": "^0.31.1",
-    "editorconfig-checker": "^6.0.1",
-    "knip": "^5.61.2",
-    "pg": "^8.16.2",
-    "supabase": "^2.26.9",
-    "typescript": "^5.5.2",
-    "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "~3.2.4",
-    "wrangler": "^4.19.1"
   },
   "dependencies": {
     "@trpc/server": "^11.4.2",
@@ -27,5 +17,17 @@
     "reflect-metadata": "^0.2.2",
     "superjson": "^2.2.2",
     "tsyringe": "^4.10.0"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-pool-workers": "^0.8.41",
+    "@cloudflare/workers-types": "^4.20250619.0",
+    "@types/node": "^22.15.30",
+    "drizzle-kit": "^0.31.1",
+    "knip": "^5.61.2",
+    "supabase": "^2.26.9",
+    "typescript": "^5.5.2",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.2.4",
+    "wrangler": "^4.19.1"
   }
 }

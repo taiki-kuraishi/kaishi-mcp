@@ -3,6 +3,6 @@
   "entry": [],
   "project": [],
   "ignore": ["apps/**", "packages/**"],
-  "ignoreBinaries": ["tsc"],
-  "ignoreDependencies": ["@biomejs/biome", "turbo"]
+  "ignoreBinaries": [".*"],
+  "ignoreDependencies": ["turbo"]
 }

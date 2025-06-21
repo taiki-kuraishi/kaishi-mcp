@@ -1,0 +1,31 @@
+name: ci
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  global-ci:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    name: ci
+    steps:
+      - uses: actions/checkout@v4
+      - name: Cache turbo build setup
+        uses: actions/cache@v4
+        with:
+          path: .turbo
+          key: ${{ runner.os }}-turbo-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-turbo-
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - run: bun install --frozen-lockfile
+      - run: bunx biome lint
+      - run: bunx biome format
+      - run: bun editorconfig-checker
+      - run: turbo check:knip
+      - run: turbo check:type

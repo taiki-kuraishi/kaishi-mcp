@@ -1,23 +1,5 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "lib": ["ESNext"],
-    "jsx": "react-jsx",
-    "module": "ESNext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "allowJs": false,
-    "checkJs": false,
-    "noEmit": false,
-    "isolatedModules": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "skipLibCheck": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noPropertyAccessFromIndexSignature": true,
     "types": ["@cloudflare/workers-types/2023-07-01", "node"],
     "baseUrl": ".",
     "paths": {
@@ -28,10 +10,9 @@
     "rootDir": "./src",
     "outDir": "./dist",
     "declaration": true,
-    "emitDeclarationOnly": false,
-    // for tsyringe
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDeclarationOnly": false
   },
-  "include": ["worker-configuration.d.ts", "src/**/*.ts"]
+  "include": ["worker-configuration.d.ts", "src/**/*.ts"],
+  "exclude": [],
+  "extends": "../../tsconfig.json"
 }

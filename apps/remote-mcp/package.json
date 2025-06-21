@@ -4,11 +4,12 @@
   "module": "src/index.ts",
   "private": true,
   "scripts": {
-    "prepare": "lefthook install",
-    "dev": "wrangler dev --port 8788",
-    "lint": "bun tsc && bun editorconfig-checker && bun knip-bun",
-    "inspector": "bunx @modelcontextprotocol/inspector",
+    "check:knip": "knip-bun --cache --cache-location=.knip",
+    "check:type": "tsc --noEmit",
     "cf-typegen": "wrangler types",
+
+    "dev": "wrangler dev --port 8788",
+    "inspector": "bunx @modelcontextprotocol/inspector",
     "test": "vitest run",
     "test:e2e": "start-server-and-test 'bun wrangler dev' http://localhost:8787 'bun vitest run'"
   },
@@ -26,7 +27,6 @@
     "@cloudflare/vitest-pool-workers": "^0.8.41",
     "@cloudflare/workers-types": "^4.20250619.0",
     "@types/node": "^24.0.3",
-    "editorconfig-checker": "^6.0.1",
     "knip": "^5.61.2",
     "start-server-and-test": "^2.0.12",
     "typescript": "^5.8.3",

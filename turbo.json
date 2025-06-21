@@ -1,4 +1,19 @@
 {
   "$schema": "https://turborepo.com/schema.json",
-  "tasks": {}
+  "tasks": {
+    "check:knip": {
+      "cache": true,
+      "outputs": [".knip/**"]
+    },
+    "check:type": {
+      "cache": true,
+      "inputs": ["**/*.{ts,tsx}", "tsconfig.json", "package.json"],
+      "outputs": []
+    },
+    "cf-typegen": {
+      "cache": true,
+      "inputs": ["**/*.{ts,tsx}", "wrangler.toml"],
+      "outputs": ["worker-configuration.d.ts"]
+    }
+  }
 }

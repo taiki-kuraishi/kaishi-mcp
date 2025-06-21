@@ -1,12 +1,8 @@
 {
   "$schema": "https://unpkg.com/knip@5/schema-jsonc.json",
-  "entry": [
-    "src/index.ts",
-    "test/**/*.spec.ts",
-    "script/database/seed.ts",
-    "script/database/migrate.ts"
-  ],
+  "entry": ["src/index.ts", "src/libs/**/*.ts", "test/**/*.spec.ts", "script/**/*.ts"],
   "project": ["src/**/*.ts", "test/**/*.ts", "script/**/*.ts"],
   "ignore": ["test/env.d.ts", "**/*.config.ts", "src/routers/app-router.ts"],
-  "ignoreDependencies": ["cloudflare", "@biomejs/biome", "wrangler"]
+  "ignoreDependencies": ["cloudflare", "wrangler", "supabase"],
+  "ignoreBinaries": [".*"]
 }

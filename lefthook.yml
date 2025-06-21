@@ -7,4 +7,8 @@ pre-commit:
     editorconfig-checker:
       run: bun editorconfig-checker
     knip:
-      run: bun knip-bun
+      run: turbo check:knip
+    type:
+      run: turbo check:type
+    cf-typegen:
+      run: turbo cf-typegen

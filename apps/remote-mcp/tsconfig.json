@@ -1,31 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ESNext",
-    "lib": ["ESNext"],
-    "jsx": "react-jsx",
-    "module": "ESNext",
-    "moduleResolution": "Bundler",
-    "resolveJsonModule": true,
-    "allowJs": false,
-    "checkJs": false,
-    "noEmit": true,
-    "isolatedModules": true,
-    "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "skipLibCheck": true,
-    "noFallthroughCasesInSwitch": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "types": ["@cloudflare/workers-types/2023-07-01"],
-    // for tsyringe
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "types": ["@cloudflare/workers-types/2023-07-01"]
   },
-  "include": [
-    "worker-configuration.d.ts",
-    "src/**/*.ts",
-    "./kaishi-syllabus-api-server/src/**/*.ts"
-  ]
+  "include": ["worker-configuration.d.ts", "src/**/*.ts"],
+  "exclude": [],
+  "extends": "../../tsconfig.json"
 }

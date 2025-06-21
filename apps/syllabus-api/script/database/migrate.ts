@@ -19,7 +19,6 @@ if (require.main === module) {
   const migrationsFolderPath = process.argv[3];
   main(dbUrl, migrationsFolderPath)
     .then(() => {
-      console.log("Migration completed successfully.");
       process.exit(0);
     })
     .catch((error) => {

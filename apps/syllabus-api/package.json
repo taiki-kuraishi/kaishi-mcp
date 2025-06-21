@@ -7,7 +7,6 @@
     "db:migrate": "supabase migration up"
   },
   "devDependencies": {
-    "@biomejs/biome": "^1.9.4",
     "@cloudflare/vitest-pool-workers": "^0.8.41",
     "@cloudflare/workers-types": "^4.20250619.0",
     "@types/node": "^22.15.30",

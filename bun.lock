@@ -29,7 +29,6 @@
         "tsyringe": "^4.10.0",
       },
       "devDependencies": {
-        "@biomejs/biome": "^1.9.4",
         "@cloudflare/vitest-pool-workers": "^0.8.41",
         "@cloudflare/workers-types": "^4.20250619.0",
         "@types/node": "^24.0.3",
@@ -54,7 +53,6 @@
         "tsyringe": "^4.10.0",
       },
       "devDependencies": {
-        "@biomejs/biome": "^1.9.4",
         "@cloudflare/vitest-pool-workers": "^0.8.41",
         "@cloudflare/workers-types": "^4.20250619.0",
         "@types/node": "^22.15.30",

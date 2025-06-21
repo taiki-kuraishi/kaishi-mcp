@@ -3,6 +3,6 @@
   "entry": ["src/index.ts", "src/libs/**/*.ts", "test/**/*.spec.ts", "script/**/*.ts"],
   "project": ["src/**/*.ts", "test/**/*.ts", "script/**/*.ts"],
   "ignore": ["test/env.d.ts", "**/*.config.ts", "src/routers/app-router.ts"],
-  "ignoreDependencies": ["cloudflare", "wrangler", "supabase"],
+  "ignoreDependencies": ["cloudflare", "wrangler", "supabase", "@go-task/cli"],
   "ignoreBinaries": [".*"]
 }

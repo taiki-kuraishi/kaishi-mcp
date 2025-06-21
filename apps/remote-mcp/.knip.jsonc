@@ -3,6 +3,6 @@
   "entry": ["src/index.ts", "test/**/*.spec.ts"],
   "project": ["src/**/*.ts", "test/**/*.ts"],
   "ignore": [],
-  "ignoreDependencies": ["start-server-and-test", "wrangler"],
+  "ignoreDependencies": ["start-server-and-test", "wrangler", "cloudflare"],
   "ignoreBinaries": [".*"]
 }

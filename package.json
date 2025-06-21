@@ -11,7 +11,8 @@
     "editorconfig-checker": "^6.0.1",
     "knip": "^5.61.2",
     "lefthook": "^1.11.14",
-    "turbo": "^2.5.4"
+    "turbo": "^2.5.4",
+    "vitest": "^3.2.4"
   },
   "peerDependencies": {
     "typescript": "latest"

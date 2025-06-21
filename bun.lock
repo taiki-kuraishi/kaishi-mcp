@@ -10,6 +10,7 @@
         "knip": "^5.61.2",
         "lefthook": "^1.11.14",
         "turbo": "^2.5.4",
+        "vitest": "^3.2.4",
       },
       "peerDependencies": {
         "typescript": "latest",
@@ -53,13 +54,14 @@
       "devDependencies": {
         "@cloudflare/vitest-pool-workers": "^0.8.41",
         "@cloudflare/workers-types": "^4.20250619.0",
+        "@go-task/cli": "^3.44.0",
         "@types/node": "^22.15.30",
         "drizzle-kit": "^0.31.1",
         "knip": "^5.61.2",
         "supabase": "^2.26.9",
         "typescript": "^5.5.2",
         "vite-tsconfig-paths": "^5.1.4",
-        "vitest": "~3.2.4",
+        "vitest": "^3.2.4",
         "wrangler": "^4.19.1",
       },
     },
@@ -174,6 +176,10 @@
     "@esbuild/win32-x64": ["@esbuild/win32-x64@0.25.4", "", { "os": "win32", "cpu": "x64" }, "sha512-nOT2vZNw6hJ+z43oP1SPea/G/6AbN6X+bGNhNuq8NtRHy4wsMhw765IKLNmnjek7GvjWBYQ8Q5VBoYTFg9y1UQ=="],
 
     "@fastify/busboy": ["@fastify/busboy@2.1.1", "", {}, "sha512-vBZP4NlzfOlerQTnba4aqZoMhE/a9HY7HRqoOPaETQcSQuWEIyZMHGfVu6w9wGtGK5fED5qRs2DteVCjOH60sA=="],
+
+    "@go-task/cli": ["@go-task/cli@3.44.0", "", { "dependencies": { "@go-task/go-npm": "^0.2.0" } }, "sha512-XpqKwQHhHbg9LmFMzZtAltkHfd+0yaQoLmErAxyFj73w6b+C9bGIrEy5ekdqyuCYu9palcjvOu2tqiUPK3cVnQ=="],
+
+    "@go-task/go-npm": ["@go-task/go-npm@0.2.0", "", { "bin": { "go-npm": "bin/index.js" } }, "sha512-vQbdtBvesHm8EUFHX8QKg4rbBodmu9VsAXH1ozpbiN5jdTMOYHTCMM31EurAYmY+rNNtxJQ4JGy6t383RPlqbw=="],
 
     "@hapi/hoek": ["@hapi/hoek@9.3.0", "", {}, "sha512-/c6rf4UJlmHlC9b5BaNvzAcFv7HZ2QHaV0D4/HNlBdvFnvQq8RI4kYdhyPCl7Xj+oWvTWQ8ujhqS53LIgAe6KQ=="],
 

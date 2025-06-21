@@ -7,11 +7,10 @@
     "check:knip": "knip-bun --cache --cache-location=.knip",
     "check:type": "tsc --noEmit",
     "cf-typegen": "wrangler types",
-
-    "dev": "wrangler dev --port 8788",
-    "inspector": "bunx @modelcontextprotocol/inspector",
     "test": "vitest run",
-    "test:e2e": "start-server-and-test 'bun wrangler dev' http://localhost:8787 'bun vitest run'"
+
+    "dev": "wrangler dev",
+    "inspector": "bunx @modelcontextprotocol/inspector"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.12.1",

@@ -1,9 +1,10 @@
+import { SELF } from "cloudflare:test";
 import { describe, expect, it } from "vitest";
 
-describe("test /", () => {
-  it("test health", async () => {
+describe("test GET /", () => {
+  it("test 200 OK", async () => {
     // act
-    const response = await fetch("http://localhost:8787/");
+    const response = await SELF.fetch("http://localhost:8788/");
 
     // assert
     expect(response.status).toBe(200);

@@ -6,7 +6,7 @@
     "check:knip": "knip-bun --cache --cache-location=.knip",
     "check:type": "tsc --noEmit",
     "cf-typegen": "wrangler types",
-
+    "test": "task test",
     "db:generate": "drizzle-kit generate --config=./src/libs/drizzle-orm/drizzle.config.ts",
     "db:migrate": "supabase migration up"
   },
@@ -21,6 +21,7 @@
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.8.41",
     "@cloudflare/workers-types": "^4.20250619.0",
+    "@go-task/cli": "^3.44.0",
     "@types/node": "^22.15.30",
     "drizzle-kit": "^0.31.1",
     "knip": "^5.61.2",

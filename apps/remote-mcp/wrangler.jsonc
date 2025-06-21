@@ -1,0 +1,27 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "kaishi-mcp-server",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-01-29",
+  "compatibility_flags": ["nodejs_compat"],
+  "durable_objects": {
+    "bindings": [
+      {
+        "class_name": "KaishiMCP",
+        "name": "MCP_OBJECT"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["KaishiMCP"]
+    }
+  ],
+  "observability": {
+    "enabled": true
+  },
+  "vars": {
+    "BUN_VERSION": "1.2.2"
+  }
+}

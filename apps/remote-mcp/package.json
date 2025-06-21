@@ -1,0 +1,39 @@
+{
+  "name": "kaishi-mcp-server",
+  "version": "0.0.0",
+  "module": "src/index.ts",
+  "private": true,
+  "scripts": {
+    "prepare": "lefthook install",
+    "dev": "wrangler dev --port 8788",
+    "format": "biome check --fix --unsafe",
+    "lint": "bun format && bun tsc && bun editorconfig-checker && bun knip-bun",
+    "inspector": "bunx @modelcontextprotocol/inspector",
+    "cf-typegen": "wrangler types",
+    "test": "vitest run",
+    "test:e2e": "start-server-and-test 'bun wrangler dev' http://localhost:8787 'bun vitest run'"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "@trpc/client": "^11.4.2",
+    "@trpc/server": "^11.4.2",
+    "agents": "^0.0.95",
+    "hono": "^4.8.1",
+    "reflect-metadata": "^0.2.2",
+    "superjson": "^2.2.2",
+    "tsyringe": "^4.10.0"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@cloudflare/vitest-pool-workers": "^0.8.41",
+    "@cloudflare/workers-types": "^4.20250619.0",
+    "@types/node": "^24.0.3",
+    "editorconfig-checker": "^6.0.1",
+    "knip": "^5.61.2",
+    "lefthook": "^1.11.14",
+    "start-server-and-test": "^2.0.12",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4",
+    "wrangler": "^4.20.0"
+  }
+}

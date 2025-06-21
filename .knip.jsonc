@@ -2,7 +2,7 @@
   "$schema": "https://unpkg.com/knip@5/schema-jsonc.json",
   "entry": [],
   "project": [],
-  "ignore": ["app/**", "packages/**"],
+  "ignore": ["apps/**", "packages/**"],
   "ignoreBinaries": ["tsc"],
   "ignoreDependencies": ["@biomejs/biome", "turbo"]
 }

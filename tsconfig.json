@@ -37,5 +37,5 @@
     "emitDecoratorMetadata": true
   },
   "include": ["**/*"],
-  "exclude": ["app/**", "packages/**"]
+  "exclude": ["apps/**", "packages/**"]
 }

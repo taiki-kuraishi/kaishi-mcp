@@ -27,5 +27,5 @@ jobs:
       - run: bunx biome lint
       - run: bunx biome format
       - run: bun editorconfig-checker
-      - run: turbo check:knip
-      - run: turbo check:type
+      - run: bun turbo check:knip
+      - run: bun turbo check:type

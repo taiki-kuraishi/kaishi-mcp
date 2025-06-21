@@ -1,0 +1,17 @@
+pre-commit:
+  parallel: true
+  commands:
+    tsc:
+      run: bun tsc --noEmit
+    format:
+      stage_fixed: true
+      run: bunx biome check --fix --unsafe
+    editorconfig-checker:
+      run: bun editorconfig-checker
+    cloudflare-type-generate:
+      stage_fixed: true
+      run: task cloudflare-type-generate
+    test:
+      run: task test
+    knip:
+      run: bun knip-bun

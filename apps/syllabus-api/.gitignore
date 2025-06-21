@@ -1,0 +1,10 @@
+# Dependency directories
+node_modules/
+
+# MacOS
+.DS_Store
+
+# wrangler project
+.dev.vars
+.wrangler/
+dist

@@ -1,0 +1,33 @@
+{
+  "name": "kaishi-syllabus-api-server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "db:generate": "drizzle-kit generate --config=./src/libs/drizzle-orm/drizzle.config.ts",
+    "db:migrate": "supabase migration up"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@cloudflare/vitest-pool-workers": "^0.8.41",
+    "@cloudflare/workers-types": "^4.20250619.0",
+    "@types/node": "^22.15.30",
+    "drizzle-kit": "^0.31.1",
+    "editorconfig-checker": "^6.0.1",
+    "knip": "^5.61.2",
+    "lefthook": "^1.11.14",
+    "pg": "^8.16.2",
+    "supabase": "^2.26.9",
+    "typescript": "^5.5.2",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "~3.2.4",
+    "wrangler": "^4.19.1"
+  },
+  "dependencies": {
+    "@trpc/server": "^11.4.2",
+    "drizzle-orm": "0.44.2",
+    "postgres": "3.4.7",
+    "reflect-metadata": "^0.2.2",
+    "superjson": "^2.2.2",
+    "tsyringe": "^4.10.0"
+  }
+}

@@ -6,8 +6,7 @@
   "scripts": {
     "prepare": "lefthook install",
     "dev": "wrangler dev --port 8788",
-    "format": "biome check --fix --unsafe",
-    "lint": "bun format && bun tsc && bun editorconfig-checker && bun knip-bun",
+    "lint": "bun tsc && bun editorconfig-checker && bun knip-bun",
     "inspector": "bunx @modelcontextprotocol/inspector",
     "cf-typegen": "wrangler types",
     "test": "vitest run",
@@ -29,7 +28,6 @@
     "@types/node": "^24.0.3",
     "editorconfig-checker": "^6.0.1",
     "knip": "^5.61.2",
-    "lefthook": "^1.11.14",
     "start-server-and-test": "^2.0.12",
     "typescript": "^5.8.3",
     "vitest": "^3.2.4",

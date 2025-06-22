@@ -1,12 +1,17 @@
-import { createTRPCClient, httpLink } from "@trpc/client";
-import superjson from "superjson";
-import type { AppRouter } from "../types/app-router";
+import {
+  type SyllabusApiTrpcClient,
+  createSyllabusApiTrpcClient,
+} from "@kaishi-mcp/syllabus-api-trpc-client";
+import { injectable } from "tsyringe";
 
-export const syllabusApiTrpcClient = createTRPCClient<AppRouter>({
-  links: [
-    httpLink({
-      url: "https://d3b5833c-kaishi-syllabus-api-server.kuraishi-taiki0.workers.dev/api/v1/trpc",
-      transformer: superjson,
-    }),
-  ],
-});
+@injectable()
+export class SyllabusApiClient {
+  public readonly client: SyllabusApiTrpcClient;
+
+  constructor(baseUrl: string, headers?: Record<string, string>) {
+    this.client = createSyllabusApiTrpcClient({
+      baseUrl,
+      headers,
+    });
+  }
+}

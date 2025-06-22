@@ -26,5 +26,33 @@
   },
   "dev": {
     "port": 8788
+  },
+  "env": {
+    "dev": {
+      "vars": {
+        "SYLLABUS_API_URL": "http://localhost:8787"
+      },
+      "durable_objects": {
+        "bindings": [
+          {
+            "class_name": "KaishiMCP",
+            "name": "MCP_OBJECT"
+          }
+        ]
+      }
+    },
+    "remote": {
+      "vars": {
+        "SYLLABUS_API_URL": "https://d3b5833c-kaishi-syllabus-api-server.kuraishi-taiki0.workers.dev"
+      },
+      "durable_objects": {
+        "bindings": [
+          {
+            "class_name": "KaishiMCP",
+            "name": "MCP_OBJECT"
+          }
+        ]
+      }
+    }
   }
 }

@@ -2,7 +2,7 @@
   "compilerOptions": {
     "composite": true,
     "noEmit": false,
-    "emitDeclarationOnly": true,
+    "emitDeclarationOnly": false,
     "exactOptionalPropertyTypes": false,
     "declaration": true,
     "baseUrl": ".",

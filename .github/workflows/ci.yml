@@ -71,6 +71,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-turbo-
       - run: bun install --frozen-lockfile
+      - run: bun turbo build
       - run: bun run test
 
   syllabus-api-ci:

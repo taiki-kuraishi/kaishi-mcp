@@ -1,6 +1,8 @@
 pre-commit:
   parallel: true
   commands:
+    install:
+      run: bun install --frozen-lockfile
     format:
       stage_fixed: true
       run: bunx biome check --fix --unsafe

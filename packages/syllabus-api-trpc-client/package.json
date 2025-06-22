@@ -1,6 +1,6 @@
 {
   "name": "@kaishi-mcp/syllabus-api-trpc-client",
-  "module": "src/index.ts",
+  "module": "dist/index.js",
   "type": "module",
   "scripts": {
     "check:knip": "knip-bun --cache --cache-location=.knip",

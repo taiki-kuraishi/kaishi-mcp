@@ -12,9 +12,6 @@ on:
       supabase-changed:
         description: "Whether supabase has changes"
         value: ${{ jobs.change-detection.outputs.supabase }}
-      workflow-changed:
-        description: "Whether reusable workflow has changes"
-        value: ${{ jobs.change-detection.outputs.workflow }}
   workflow_dispatch:
 
 jobs:
@@ -50,7 +47,6 @@ jobs:
       remote-mcp: ${{ steps.change-detection.outputs.remote-mcp }}
       syllabus-api: ${{ steps.change-detection.outputs.syllabus-api }}
       supabase: ${{ steps.change-detection.outputs.supabase }}
-      workflow: ${{ steps.change-detection.outputs.workflow }}
     steps:
       - uses: actions/checkout@v4
       - uses: dorny/paths-filter@v3
@@ -59,11 +55,12 @@ jobs:
           filters: |
             remote-mcp:
               - 'apps/remote-mcp/**'
+              - '.github/workflows/reusable-ci.yml'
             syllabus-api:
               - 'apps/syllabus-api/**'
+              - '.github/workflows/reusable-ci.yml'
             supabase:
               - 'apps/syllabus-api/supabase/**'
-            workflow:
               - '.github/workflows/reusable-ci.yml'
 
   remote-mcp-ci:

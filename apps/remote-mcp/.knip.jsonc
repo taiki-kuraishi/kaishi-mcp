@@ -3,11 +3,6 @@
   "entry": ["src/index.ts", "test/**/*.spec.ts"],
   "project": ["src/**/*.ts", "test/**/*.ts"],
   "ignore": [],
-  "ignoreDependencies": [
-    "start-server-and-test",
-    "wrangler",
-    "cloudflare",
-    "@kaishi-mcp/syllabus-api-trpc-client"
-  ],
+  "ignoreDependencies": ["start-server-and-test", "wrangler", "cloudflare", "@kaishi-mcp/server"],
   "ignoreBinaries": [".*"]
 }

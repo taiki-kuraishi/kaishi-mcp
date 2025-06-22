@@ -1,21 +1,30 @@
 import "reflect-metadata";
+import { KaishiMcpServer } from "@kaishi-mcp/server";
+import { McpAgent } from "agents/mcp";
 import { Hono } from "hono";
-import { KaishiMcpAgent } from "./mcp/kaishi-mcp-agent";
-import { dependencyInjectionMiddleware } from "./middlewares/dependency-injection-middleware";
 import { health } from "./routers/health";
 import { mcp } from "./routers/mcp";
 import { sse } from "./routers/sse";
 
-export const KaishiMCP = KaishiMcpAgent;
+export class KaishiMCP extends McpAgent {
+  public readonly server: KaishiMcpServer;
+
+  constructor(ctx: DurableObjectState, env: Cloudflare.Env) {
+    super(ctx, env);
+
+    this.server = new KaishiMcpServer({
+      syllabusApiBaseUrl: env.SYLLABUS_API_URL,
+    });
+  }
+
+  async init() {}
+}
 
 export interface ExtendsEnv {
   Bindings: Cloudflare.Env;
 }
 
 const app = new Hono<ExtendsEnv>();
-
-// middlewares
-app.use("*", dependencyInjectionMiddleware);
 
 // routers
 app.route("/", health);

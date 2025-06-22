@@ -13,6 +13,8 @@ node_modules
 
 # build
 dist
+*.tsbuildinfo
+tsconfig.tsbuildinfo
 
 # env
 .env

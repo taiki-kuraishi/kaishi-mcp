@@ -19,6 +19,7 @@
     },
     "build": {
       "cache": true,
+      "dependsOn": ["^build"],
       "inputs": ["**/*.{ts,tsx}", "tsconfig.json", "package.json"],
       "outputs": ["dist/**"]
     },

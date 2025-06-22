@@ -9,6 +9,7 @@ pre-commit:
     knip:
       run: turbo check:knip
     type:
+      stage_fixed: true
       run: turbo check:type
     cf-typegen:
       run: turbo cf-typegen

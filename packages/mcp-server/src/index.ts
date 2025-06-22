@@ -3,7 +3,7 @@ import { SyllabusApiClient } from "./clients/syllabus-api-trpc-client";
 import { GetAllSyllabusTool } from "./tools/get-all-syllabus-tool";
 
 export interface KaishiMcpServerOptions {
-  syllabusApiBaseUrl?: string;
+  syllabusApiBaseUrl: string;
 }
 
 export class KaishiMcpServer extends McpServer {
@@ -13,10 +13,7 @@ export class KaishiMcpServer extends McpServer {
       version: "1.0.0",
     });
 
-    const syllabusApiClient = new SyllabusApiClient(
-      options.syllabusApiBaseUrl ??
-        "https://kaishi-syllabus-api-server.kuraishi-taiki0.workers.dev",
-    );
+    const syllabusApiClient = new SyllabusApiClient(options.syllabusApiBaseUrl);
 
     // register tools
     new GetAllSyllabusTool(syllabusApiClient.client).register(this);

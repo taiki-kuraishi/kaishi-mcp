@@ -8,12 +8,14 @@
     "check:type": {
       "cache": true,
       "inputs": ["**/*.{ts,tsx}", "tsconfig.json", "package.json"],
-      "outputs": []
+      "outputs": [],
+      "dependsOn": ["^build"]
     },
     "cf-typegen": {
       "cache": true,
       "inputs": ["**/*.{ts,tsx}", "wrangler.toml"],
-      "outputs": ["worker-configuration.d.ts"]
+      "outputs": ["worker-configuration.d.ts"],
+      "dependsOn": ["^build"]
     },
     "build": {
       "cache": true,

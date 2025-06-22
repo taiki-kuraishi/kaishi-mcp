@@ -1,0 +1,8 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema-jsonc.json",
+  "entry": ["src/index.ts"],
+  "project": ["src/**/*.ts"],
+  "ignore": [],
+  "ignoreDependencies": ["@kaishi-mcp/syllabus-api-trpc-client"],
+  "ignoreBinaries": [".*"]
+}

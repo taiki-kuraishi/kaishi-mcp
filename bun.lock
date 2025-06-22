@@ -20,12 +20,10 @@
       "name": "@kaishi-mcp/remote-mcp",
       "version": "0.0.0",
       "dependencies": {
-        "@kaishi-mcp/syllabus-api-trpc-client": "workspace:*",
-        "@modelcontextprotocol/sdk": "^1.12.1",
+        "@kaishi-mcp/server": "workspace:*",
         "agents": "^0.0.95",
         "hono": "^4.8.1",
         "reflect-metadata": "^0.2.2",
-        "tsyringe": "^4.10.0",
       },
       "devDependencies": {
         "@cloudflare/vitest-pool-workers": "^0.8.41",
@@ -63,12 +61,25 @@
         "wrangler": "^4.19.1",
       },
     },
+    "packages/mcp-server": {
+      "name": "@kaishi-mcp/server",
+      "dependencies": {
+        "@kaishi-mcp/syllabus-api-trpc-client": "workspace:*",
+        "@modelcontextprotocol/sdk": "^1.13.0",
+      },
+      "devDependencies": {
+        "knip": "^5.61.2",
+      },
+    },
     "packages/syllabus-api-trpc-client": {
       "name": "@kaishi-mcp/syllabus-api-trpc-client",
       "dependencies": {
         "@kaishi-mcp/syllabus-api": "workspace:*",
         "@trpc/client": "^11.4.2",
         "superjson": "^2.2.2",
+      },
+      "devDependencies": {
+        "knip": "^5.61.2",
       },
     },
   },
@@ -238,6 +249,8 @@
     "@jridgewell/trace-mapping": ["@jridgewell/trace-mapping@0.3.9", "", { "dependencies": { "@jridgewell/resolve-uri": "^3.0.3", "@jridgewell/sourcemap-codec": "^1.4.10" } }, "sha512-3Belt6tdc8bPgAtbcmdtNJlirVoTmEb5e2gC94PnkwEW9jI6CAHUeoG85tjWP5WquqfavoMtMwiG4P926ZKKuQ=="],
 
     "@kaishi-mcp/remote-mcp": ["@kaishi-mcp/remote-mcp@workspace:apps/remote-mcp"],
+
+    "@kaishi-mcp/server": ["@kaishi-mcp/server@workspace:packages/mcp-server"],
 
     "@kaishi-mcp/syllabus-api": ["@kaishi-mcp/syllabus-api@workspace:apps/syllabus-api"],
 

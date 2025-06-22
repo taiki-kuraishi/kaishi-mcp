@@ -12,6 +12,10 @@ on:
       supabase-changed:
         description: "Whether supabase has changes"
         value: ${{ jobs.change-detection.outputs.supabase }}
+  pull_request:
+    paths:
+      - '.github/workflows/reusable-ci.yml'
+  workflow_dispatch:
 
 jobs:
   global-ci:

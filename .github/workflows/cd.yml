@@ -27,6 +27,7 @@ jobs:
       - run: bunx biome format
       - run: bun editorconfig-checker
       - run: bun turbo check:knip
+      - run: bun turbo build
       - run: bun turbo check:type
 
   change-detection:

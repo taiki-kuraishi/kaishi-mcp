@@ -10,9 +10,12 @@ node_modules
 # cache
 .turbo
 .knip
+.wrangler
 
 # build
 dist
+*.tsbuildinfo
+tsconfig.tsbuildinfo
 
 # env
 .env

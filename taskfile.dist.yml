@@ -4,8 +4,9 @@ tasks:
   install:
     desc: Install dependencies and setup environment
     cmds:
-      - bun install --frozen-lockfile
       - bun lefthook install
+      - bun install --frozen-lockfile
+      - bun turbo build
 
   format:
     desc: Format code
@@ -19,3 +20,4 @@ tasks:
       - bun editorconfig-checker
       - turbo check:knip
       - turbo check:type
+      - turbo build

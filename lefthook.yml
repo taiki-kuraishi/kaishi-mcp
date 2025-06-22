@@ -1,6 +1,8 @@
 pre-commit:
   parallel: true
   commands:
+    install:
+      run: bun install --frozen-lockfile
     format:
       stage_fixed: true
       run: bunx biome check --fix --unsafe
@@ -9,6 +11,7 @@ pre-commit:
     knip:
       run: turbo check:knip
     type:
+      stage_fixed: true
       run: turbo check:type
     cf-typegen:
       run: turbo cf-typegen

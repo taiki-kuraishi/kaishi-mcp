@@ -1,0 +1,22 @@
+{
+  "name": "@kaishi-mcp/syllabus-api-trpc-client",
+  "module": "dist/index.js",
+  "type": "module",
+  "scripts": {
+    "check:knip": "knip-bun --cache --cache-location=.knip",
+    "check:type": "tsc --noEmit",
+    "build": "tsc"
+  },
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "dependencies": {
+    "@trpc/client": "^11.4.2",
+    "superjson": "^2.2.2",
+    "@kaishi-mcp/syllabus-api": "workspace:*"
+  },
+  "devDependencies": {}
+}

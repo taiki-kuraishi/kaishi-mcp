@@ -1,5 +1,5 @@
 {
-  "name": "kaishi-mcp-server",
+  "name": "@kaishi-mcp/remote-mcp",
   "version": "0.0.0",
   "module": "src/index.ts",
   "private": true,
@@ -8,18 +8,16 @@
     "check:type": "tsc --noEmit",
     "cf-typegen": "wrangler types",
     "test": "vitest run",
-
-    "dev": "wrangler dev",
+    "dev": "wrangler dev --env dev",
+    "dev:remote": "wrangler dev --env remote",
     "inspector": "bunx @modelcontextprotocol/inspector"
   },
   "dependencies": {
+    "@kaishi-mcp/syllabus-api-trpc-client": "workspace:*",
     "@modelcontextprotocol/sdk": "^1.12.1",
-    "@trpc/client": "^11.4.2",
-    "@trpc/server": "^11.4.2",
     "agents": "^0.0.95",
     "hono": "^4.8.1",
     "reflect-metadata": "^0.2.2",
-    "superjson": "^2.2.2",
     "tsyringe": "^4.10.0"
   },
   "devDependencies": {

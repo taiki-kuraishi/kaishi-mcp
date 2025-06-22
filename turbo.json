@@ -15,6 +15,11 @@
       "inputs": ["**/*.{ts,tsx}", "wrangler.toml"],
       "outputs": ["worker-configuration.d.ts"]
     },
+    "build": {
+      "cache": true,
+      "inputs": ["**/*.{ts,tsx}", "tsconfig.json", "package.json"],
+      "outputs": ["dist/**"]
+    },
     "test": {
       "cache": false
     }

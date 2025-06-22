@@ -26,6 +26,7 @@ jobs:
       - run: bun editorconfig-checker
       - run: bun turbo check:knip
       - run: bun turbo check:type
+      - run: turbo build
 
   change-detection:
     runs-on: ubuntu-latest

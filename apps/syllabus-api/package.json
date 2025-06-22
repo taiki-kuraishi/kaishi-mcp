@@ -1,14 +1,21 @@
 {
-  "name": "kaishi-syllabus-api-server",
+  "name": "@kaishi-mcp/syllabus-api",
   "version": "0.0.0",
   "private": true,
   "scripts": {
     "check:knip": "knip-bun --cache --cache-location=.knip",
     "check:type": "tsc --noEmit",
     "cf-typegen": "wrangler types",
+    "build": "tsc",
     "test": "task test",
     "db:generate": "drizzle-kit generate --config=./src/libs/drizzle-orm/drizzle.config.ts",
     "db:migrate": "supabase migration up"
+  },
+  "exports": {
+    "./routers/trpc": {
+      "import": "./dist/routers/app-router.d.ts",
+      "types": "./dist/routers/app-router.d.ts"
+    }
   },
   "dependencies": {
     "@trpc/server": "^11.4.2",

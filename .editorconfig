@@ -22,3 +22,14 @@ trim_trailing_whitespace = false
 indent_style = unset
 indent_size = unset
 trim_trailing_whitespace = false
+
+[**/**.tsbuildinfo]
+indent_style = unset
+indent_size = unset
+trim_trailing_whitespace = false
+insert_final_newline = false
+
+[**/dist/**]
+indent_style = unset
+indent_size = unset
+trim_trailing_whitespace = false

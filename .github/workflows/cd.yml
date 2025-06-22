@@ -30,7 +30,6 @@ jobs:
       - run: bun turbo build
       - run: bun turbo check:type
 
-
   change-detection:
     runs-on: ubuntu-latest
     timeout-minutes: 5

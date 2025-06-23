@@ -1,15 +1,13 @@
 import { env } from "cloudflare:test";
-import type { DrizzleClient } from "@src/libs/drizzle-orm/clients";
 import { Syllabus } from "@src/models/syllabus";
 import { prepareTrpcClient } from "@test/helpers/prepare-trpc-client";
 import { TransactionTestHelper } from "@test/helpers/transactionTestHelper";
-import { container } from "tsyringe";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 
 describe("test syllabusRouter.getAll", async () => {
   const client = await prepareTrpcClient({ env });
-  const db = container.resolve<DrizzleClient>("DrizzleClient");
-  const transactionHelper = new TransactionTestHelper(db);
+  const transactionHelper = new TransactionTestHelper(env.DATABASE_URL);
+  const db = transactionHelper.db;
 
   beforeEach(async () => {
     await transactionHelper.begin();

@@ -10,7 +10,7 @@
       "@script/*": ["script/*"],
       "@test/*": ["test/*"]
     },
-    "rootDir": "./src",
+    "rootDir": ".",
     "outDir": "./dist",
     "declaration": true
   },

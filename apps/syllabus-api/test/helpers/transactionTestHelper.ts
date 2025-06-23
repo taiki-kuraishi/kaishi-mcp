@@ -5,8 +5,8 @@ import { type DrizzleClient, drizzleClient } from "../../src/libs/drizzle-orm/cl
 export class TransactionTestHelper {
   public readonly db: DrizzleClient;
 
-  constructor(readonly dbUro: string) {
-    this.db = drizzleClient(dbUro);
+  constructor(readonly dbUrl: string) {
+    this.db = drizzleClient(dbUrl);
     // override di container for transaction sharing
     container.registerInstance<DrizzleClient>("DrizzleClient", this.db);
   }

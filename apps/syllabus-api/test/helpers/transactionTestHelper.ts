@@ -1,8 +1,15 @@
 import { sql } from "drizzle-orm";
-import type { DrizzleClient } from "../../src/libs/drizzle-orm/clients";
+import { container } from "tsyringe";
+import { type DrizzleClient, drizzleClient } from "../../src/libs/drizzle-orm/clients";
 
 export class TransactionTestHelper {
-  constructor(private readonly db: DrizzleClient) {}
+  public readonly db: DrizzleClient;
+
+  constructor(readonly dbUrl: string) {
+    this.db = drizzleClient(dbUrl);
+    // override di container for transaction sharing
+    container.registerInstance<DrizzleClient>("DrizzleClient", this.db);
+  }
 
   async begin(): Promise<void> {
     await this.db.execute(sql`BEGIN`);

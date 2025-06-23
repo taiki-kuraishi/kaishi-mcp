@@ -4,8 +4,8 @@ tasks:
   install:
     desc: Install dependencies and setup environment
     cmds:
-      - bun lefthook install
       - bun install --frozen-lockfile
+      - bun lefthook install
       - bun turbo build
 
   format:

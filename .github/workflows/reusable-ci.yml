@@ -2,16 +2,6 @@ name: Reusable CI Workflow
 
 on:
   workflow_call:
-    outputs:
-      remote-mcp-changed:
-        description: "Whether remote-mcp has changes"
-        value: ${{ jobs.change-detection.outputs.remote-mcp }}
-      syllabus-api-changed:
-        description: "Whether syllabus-api has changes"
-        value: ${{ jobs.change-detection.outputs.syllabus-api }}
-      supabase-changed:
-        description: "Whether supabase has changes"
-        value: ${{ jobs.change-detection.outputs.supabase }}
     secrets:
       SUPABASE_ACCESS_TOKEN:
         required: true

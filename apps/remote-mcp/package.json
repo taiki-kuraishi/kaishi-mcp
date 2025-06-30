@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@kaishi-mcp/server": "workspace:*",
-    "agents": "^0.0.95",
+    "agents": "^0.0.100",
     "hono": "^4.8.1",
     "reflect-metadata": "^0.2.2"
   },

@@ -8,8 +8,8 @@ export const Syllabus = pgTable("syllabus", {
   endTerm: integer("end_term").notNull(), // 終了時期
   category: text("category").notNull(), // 分類
   credits: text("credits").notNull(), // 基準単位数
-  dayOfWeek: integer("day_of_week").notNull(), // 代表曜日
-  period: integer("period").notNull(), // 開講時限
+  dayOfWeek: integer("day_of_week"), // 代表曜日
+  period: integer("period"), // 開講時限
   location: text("location").notNull(), // 校地
   isCompulsory: boolean("is_compulsory").notNull(), // 必修科目フラグ
   description: text("description").notNull(), // 概要

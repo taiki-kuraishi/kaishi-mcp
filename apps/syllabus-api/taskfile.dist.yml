@@ -49,7 +49,6 @@ tasks:
       - bunx supabase start
       - defer: bunx supabase stop
       - bunx supabase db reset
-      - bun /script/database/seed.ts {{.LOCAL_SUPABASE_URL}}
       - bun wrangler dev --env local-supabase
 
   test:

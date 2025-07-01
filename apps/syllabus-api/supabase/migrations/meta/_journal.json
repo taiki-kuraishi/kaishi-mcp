@@ -15,6 +15,13 @@
       "when": 1747715169867,
       "tag": "0001_clumsy_mathemanic",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1751333041570,
+      "tag": "0002_secret_robin_chapel",
+      "breakpoints": true
     }
   ]
 }

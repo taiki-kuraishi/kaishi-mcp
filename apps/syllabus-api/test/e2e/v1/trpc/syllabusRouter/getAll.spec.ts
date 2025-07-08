@@ -1,5 +1,5 @@
 import { env } from "cloudflare:test";
-import { SyllabusFactory } from "@test/factories";
+import { SyllabusFactory } from "@script/database/factories";
 import { prepareTrpcClient } from "@test/helpers/prepare-trpc-client";
 import { TransactionTestHelper } from "@test/helpers/transactionTestHelper";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";

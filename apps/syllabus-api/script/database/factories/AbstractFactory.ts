@@ -1,4 +1,4 @@
-import type { DrizzleClient } from "../../src/libs/drizzle-orm/clients";
+import type { DrizzleClient } from "@src/libs/drizzle-orm/clients";
 
 export abstract class AbstractFactory<T> {
   constructor(protected readonly db: DrizzleClient) {}

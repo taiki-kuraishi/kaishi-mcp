@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
-import type { InsertSyllabus, SelectSyllabus } from "../../src/models/syllabus";
-import { Syllabus } from "../../src/models/syllabus";
+import type { InsertSyllabus, SelectSyllabus } from "@src/models/syllabus";
+import { Syllabus } from "@src/models/syllabus";
 import { AbstractFactory } from "./AbstractFactory";
 
 export class SyllabusFactory extends AbstractFactory<InsertSyllabus> {

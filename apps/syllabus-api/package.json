@@ -8,7 +8,7 @@
     "cf-typegen": "wrangler types --strict-vars=false",
     "build": "tsc",
     "test": "task test",
-    "db:generate": "drizzle-kit generate --config=./src/libs/drizzle-orm/drizzle.config.ts",
+    "db:generate": "drizzle-kit generate --config='./src/libs/drizzle-orm/drizzle.config.ts'",
     "db:migrate": "supabase migration up"
   },
   "exports": {
@@ -32,10 +32,12 @@
     "@types/node": "^22.15.30",
     "drizzle-kit": "^0.31.1",
     "knip": "^5.61.2",
+    "papaparse": "^5.5.3",
     "supabase": "^2.26.9",
     "typescript": "^5.5.2",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^3.2.4",
-    "wrangler": "^4.19.1"
+    "wrangler": "^4.19.1",
+    "zod": "^3.25.67"
   }
 }

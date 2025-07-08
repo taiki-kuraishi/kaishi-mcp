@@ -107,6 +107,150 @@ POST /mcp
 ```
 Main endpoint for MCP protocol message handling.
 
+## MCP Client Configuration
+
+The **remote-mcp** server can be easily integrated with popular MCP clients like VS Code and Claude Desktop. Below are configuration examples for both development and production environments.
+
+### Available MCP Tools
+
+The server provides the following MCP tools:
+
+- **`getAllSyllabus`**: Retrieves all syllabus entries from the connected syllabus API
+
+### VS Code Configuration
+
+Create a `.vscode/mcp.json` file in your project root:
+
+#### Development Configuration (Local)
+```json
+{
+  "servers": {
+    "kaishi-mcp": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-stdio"],
+      "env": {
+        "MCP_SERVER_URL": "http://localhost:8788/mcp",
+        "SYLLABUS_API_URL": "http://localhost:8787"
+      }
+    }
+  }
+}
+```
+
+#### Production Configuration
+```json
+{
+  "servers": {
+    "kaishi-mcp": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-stdio"],
+      "env": {
+        "MCP_SERVER_URL": "https://kaishi-mcp-server.your-domain.workers.dev/mcp",
+        "SYLLABUS_API_URL": "https://d3b5833c-kaishi-syllabus-api-server.kuraishi-taiki0.workers.dev"
+      }
+    }
+  }
+}
+```
+
+### Claude Desktop Configuration
+
+Create or edit your `claude_desktop_config.json` file:
+
+**macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+**Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
+
+#### Development Configuration (Local)
+```json
+{
+  "mcpServers": {
+    "kaishi-mcp": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-stdio"],
+      "env": {
+        "MCP_SERVER_URL": "http://localhost:8788/mcp",
+        "SYLLABUS_API_URL": "http://localhost:8787"
+      }
+    }
+  }
+}
+```
+
+#### Production Configuration
+```json
+{
+  "mcpServers": {
+    "kaishi-mcp": {
+      "command": "npx",
+      "args": ["@modelcontextprotocol/server-stdio"],
+      "env": {
+        "MCP_SERVER_URL": "https://kaishi-mcp-server.your-domain.workers.dev/mcp",
+        "SYLLABUS_API_URL": "https://d3b5833c-kaishi-syllabus-api-server.kuraishi-taiki0.workers.dev"
+      }
+    }
+  }
+}
+```
+
+### Setup Instructions
+
+#### For Local Development
+
+1. **Start the servers:**
+  ```bash
+  # Terminal 1: Start syllabus-api
+  cd apps/syllabus-api
+  bun run dev
+  
+  # Terminal 2: Start remote-mcp
+  cd apps/remote-mcp
+  bun run dev
+  ```
+
+2. **Configure your MCP client:**
+  - Use the development configuration examples above
+  - The remote-mcp server will be available at `http://localhost:8788`
+  - The syllabus-api will be available at `http://localhost:8787`
+
+3. **Restart your MCP client:**
+  - **VS Code**: Reload the window or restart VS Code
+  - **Claude Desktop**: Restart the Claude Desktop application
+
+#### For Production Use
+
+1. **Deploy the applications:**
+  ```bash
+  # Deploy syllabus-api
+  cd apps/syllabus-api
+  bun run deploy
+  
+  # Deploy remote-mcp
+  cd apps/remote-mcp
+  bun run deploy
+  ```
+
+2. **Update configuration:**
+  - Use the production configuration examples above
+  - Replace `your-domain` with your actual Cloudflare Workers domain
+  - Ensure the `SYLLABUS_API_URL` points to your deployed syllabus-api
+
+3. **Restart your MCP client** to load the new configuration
+
+### Server Information
+
+- **Server Name**: `kaishi-mcp-server`
+- **Development Port**: `8788`
+- **Protocol**: HTTP with MCP over JSON-RPC
+- **Platform**: Cloudflare Workers with Durable Objects
+- **Available Tools**: `getAllSyllabus`
+
+### Troubleshooting
+
+- **Connection Issues**: Ensure both servers are running and accessible
+- **Tool Not Found**: Verify the server is properly deployed and the syllabus-api is accessible
+- **Configuration Errors**: Check JSON syntax and file locations
+- **Client Not Responding**: Restart the MCP client after configuration changes
+
 ## Architecture
 
 ### Durable Objects

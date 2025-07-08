@@ -46,5 +46,4 @@ describe("test syllabusRouter.getAll", async () => {
       }),
     );
   });
-
 });

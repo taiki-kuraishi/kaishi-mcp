@@ -1,0 +1,1 @@
+export { SyllabusFactory } from "./SyllabusFactory";

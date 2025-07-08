@@ -1,5 +1,10 @@
 version: '3'
 
+includes:
+  syllabus-api:
+    taskfile: apps/syllabus-api
+    dir: apps/syllabus-api
+
 tasks:
   install:
     desc: Install dependencies and setup environment
@@ -21,3 +26,18 @@ tasks:
       - turbo check:knip
       - turbo check:type
       - turbo build
+
+  run:remote-mcp:
+    dir: apps/remote-mcp
+    cmds:
+      -  bun run dev
+
+  run:mcp-inspector:
+    cmds:
+      - bunx @modelcontextprotocol/inspector
+
+  dev:
+    desc: Start development server
+    cmds:
+      - bun turbo build
+      - task -p syllabus-api:dev run:remote-mcp run:mcp-inspector

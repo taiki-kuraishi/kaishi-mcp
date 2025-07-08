@@ -9,11 +9,11 @@ pre-commit:
     editorconfig-checker:
       run: bun editorconfig-checker
     knip:
-      run: turbo check:knip
+      run: bun turbo check:knip
     build:
-      run: turbo build
+      run: bun turbo build
     type:
-      run: turbo check:type
+      run: bun turbo check:type
     cf-typegen:
       stage_fixed: true
-      run: turbo cf-typegen
+      run: bun turbo cf-typegen

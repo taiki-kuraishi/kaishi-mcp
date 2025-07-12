@@ -1,26 +1,30 @@
 import type { Procedure } from "@src/libs/trpc/trpc";
 import type { SelectSyllabus } from "@src/models/syllabus";
-import type { GetSyllabusByIdUseCase } from "@src/usecase/get-syllabus-by-id-use-case";
-import { inject, injectable } from "tsyringe";
+import { GetSyllabusByIdUseCase } from "@src/usecase/get-syllabus-by-id-use-case";
+import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import { AbstractTrpcController } from "./abstract-trpc-controller";
 
-@injectable()
 export class GetSyllabusByIdController extends AbstractTrpcController {
-  protected readonly inputSchema = z.string();
+  protected readonly inputSchema = z.string().uuid();
+  private readonly useCase = new GetSyllabusByIdUseCase();
 
-  public constructor(
-    protected override readonly procedure: Procedure,
-    @inject("GetSyllabusByIdUseCase") private readonly useCase: GetSyllabusByIdUseCase,
-  ) {
+  public constructor(protected override readonly procedure: Procedure) {
     super(procedure);
   }
 
   public buildProcedure() {
     return this.procedure
       .input(this.inputSchema)
-      .query(async ({ input }): Promise<SelectSyllabus | null> => {
-        return await this.useCase.execute(input);
+      .query(async ({ input, ctx }): Promise<SelectSyllabus | null> => {
+        try {
+          return await this.useCase.execute({ db: ctx.dbClient, id: input });
+        } catch (error) {
+          throw new TRPCError({
+            code: "INTERNAL_SERVER_ERROR",
+            message: "INTERNAL_SERVER_ERROR",
+          });
+        }
       });
   }
 }

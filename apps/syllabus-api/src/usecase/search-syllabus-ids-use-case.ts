@@ -1,7 +1,6 @@
 import type { DrizzleClient } from "@src/libs/drizzle-orm/clients";
 import { Syllabus } from "@src/models/syllabus";
 import { and, eq, like } from "drizzle-orm";
-import { inject, injectable } from "tsyringe";
 
 interface Params {
   name?: string;
@@ -17,12 +16,15 @@ interface Params {
   learningObjectives?: string;
 }
 
-@injectable()
 export class SearchSyllabusIdsUseCase {
-  public constructor(@inject("DrizzleClient") private readonly db: DrizzleClient) {}
-
-  public async execute(params: Params): Promise<string[]> {
-    const result = await this.db
+  public async execute({
+    db,
+    params,
+  }: {
+    db: DrizzleClient;
+    params: Params;
+  }): Promise<string[]> {
+    const result = await db
       .select({ id: Syllabus.id })
       .from(Syllabus)
       .where(

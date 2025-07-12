@@ -4,29 +4,39 @@ import { prepareTrpcClient } from "@test/helpers/prepare-trpc-client";
 import { TransactionTestHelper } from "@test/helpers/transactionTestHelper";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 
-describe("test syllabusRouter.getAll", async () => {
-  const client = await prepareTrpcClient({ env });
+describe("test syllabusRouter.getSyllabusById", async () => {
   const transactionHelper = new TransactionTestHelper(env.DATABASE_URL);
+  const client = await prepareTrpcClient({ env, dbClient: transactionHelper.db });
   const db = transactionHelper.db;
-  let syllabusFactory: SyllabusFactory;
+  const syllabusFactory = new SyllabusFactory(db);
 
   beforeEach(async () => {
     await transactionHelper.begin();
-    syllabusFactory = new SyllabusFactory(db);
   });
 
   afterEach(async () => {
     await transactionHelper.rollback();
   });
 
-  it("should retrieve all syllabuses", async () => {
+  it("should get syllabus by valid id", async () => {
     // arrange
     const expected = await syllabusFactory.create();
 
     // act
-    const res = await client.syllabusRouter.getAll();
+    const res = await client.syllabusRouter.getSyllabusById(expected.id);
 
     // assert
-    expect(res).toContainEqual(expected);
+    expect(res).toEqual(expected);
+  });
+
+  it("should return null for non-existent id", async () => {
+    // arrange
+    const nonExistentId = "123e4567-e89b-12d3-a456-426614174000";
+
+    // act
+    const res = await client.syllabusRouter.getSyllabusById(nonExistentId);
+
+    // assert
+    expect(res).toBeNull();
   });
 });

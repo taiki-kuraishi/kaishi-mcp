@@ -1,10 +1,9 @@
 import type { Procedure } from "@src/libs/trpc/trpc";
-import type { SearchSyllabusIdsUseCase } from "@src/usecase/search-syllabus-ids-use-case";
-import { inject, injectable } from "tsyringe";
+import { SearchSyllabusIdsUseCase } from "@src/usecase/search-syllabus-ids-use-case";
+import { TRPCError } from "@trpc/server";
 import { z } from "zod";
 import { AbstractTrpcController } from "./abstract-trpc-controller";
 
-@injectable()
 export class SearchSyllabusIdsController extends AbstractTrpcController {
   protected readonly inputSchema = z.object({
     name: z.string().optional(),
@@ -20,16 +19,27 @@ export class SearchSyllabusIdsController extends AbstractTrpcController {
     learningObjectives: z.string().optional(),
   });
 
-  public constructor(
-    protected override readonly procedure: Procedure,
-    @inject("SearchSyllabusIdsUseCase") private readonly useCase: SearchSyllabusIdsUseCase,
-  ) {
+  private readonly useCase = new SearchSyllabusIdsUseCase();
+
+  public constructor(protected override readonly procedure: Procedure) {
     super(procedure);
   }
 
   public buildProcedure() {
-    return this.procedure.input(this.inputSchema).query(async ({ input }): Promise<string[]> => {
-      return await this.useCase.execute(input);
-    });
+    return this.procedure
+      .input(this.inputSchema)
+      .query(async ({ input, ctx }): Promise<string[]> => {
+        try {
+          return await this.useCase.execute({
+            db: ctx.dbClient,
+            params: input,
+          });
+        } catch (error) {
+          throw new TRPCError({
+            code: "INTERNAL_SERVER_ERROR",
+            message: "INTERNAL_SERVER_ERROR",
+          });
+        }
+      });
   }
 }

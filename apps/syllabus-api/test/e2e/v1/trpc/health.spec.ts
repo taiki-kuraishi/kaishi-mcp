@@ -1,3 +1,4 @@
+import "reflect-metadata";
 import { env } from "cloudflare:test";
 import { prepareTrpcClient } from "@test/helpers/prepare-trpc-client";
 import { describe, expect, it } from "vitest";

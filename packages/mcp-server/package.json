@@ -1,6 +1,6 @@
 {
   "name": "@kaishi-mcp/server",
-  "module": "dist/index.js",
+  "module": "dist/src/index.js",
   "type": "module",
   "scripts": {
     "check:knip": "knip-bun --cache --cache-location=.knip",
@@ -9,8 +9,8 @@
   },
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/src/index.js"
     }
   },
   "dependencies": {

@@ -1,11 +1,8 @@
-import type { DrizzleClient } from "@src/libs/drizzle-orm/clients";
-import { publicProcedure, router } from "@src/libs/trpc/trpc";
-import { type SelectSyllabus, Syllabus } from "@src/models/syllabus";
-import { container } from "tsyringe";
+import { GetSyllabusByIdController } from "@src/contorollers/v1/trpc/get-syllabus-by-id-contoroller";
+import { SearchSyllabusIdsController } from "@src/contorollers/v1/trpc/search-syllabus-ids-contoroller";
+import { procedure, router } from "@src/libs/trpc/trpc";
 
 export const syllabusRouter = router({
-  getAll: publicProcedure.query(async (): Promise<SelectSyllabus[]> => {
-    const db = container.resolve<DrizzleClient>("DrizzleClient");
-    return await db.select().from(Syllabus);
-  }),
+  searchSyllabusIds: new SearchSyllabusIdsController(procedure).buildProcedure(),
+  getSyllabusById: new GetSyllabusByIdController(procedure).buildProcedure(),
 });

@@ -65,6 +65,12 @@ const main = async (dbUrl: string) => {
  */
 if (require.main === module) {
   const dbUrl = process.argv[2];
+
+  if (!dbUrl) {
+    console.error("Usage: node seed.js <database-url>");
+    process.exit(1);
+  }
+
   main(dbUrl)
     .then(() => {
       process.exit(0);

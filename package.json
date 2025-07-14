@@ -6,7 +6,7 @@
     "check:knip": "knip-bun --cache --cache-location=.knip"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.9.4",
+    "@biomejs/biome": "2.1.1",
     "@types/bun": "latest",
     "editorconfig-checker": "^6.0.1",
     "knip": "^5.61.2",

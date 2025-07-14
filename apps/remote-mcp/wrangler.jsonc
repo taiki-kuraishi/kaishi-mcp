@@ -22,7 +22,8 @@
     "enabled": true
   },
   "vars": {
-    "BUN_VERSION": "1.2.2"
+    "BUN_VERSION": "1.2.2",
+    "SYLLABUS_API_URL": "https://kaishi-mcp-server.kuraishi-taiki0.workers.dev/mcp"
   },
   "dev": {
     "port": 8788
@@ -43,7 +44,7 @@
     },
     "remote": {
       "vars": {
-        "SYLLABUS_API_URL": "https://d3b5833c-kaishi-syllabus-api-server.kuraishi-taiki0.workers.dev"
+        "SYLLABUS_API_URL": "https://kaishi-mcp-server.kuraishi-taiki0.workers.dev/mcp"
       },
       "durable_objects": {
         "bindings": [

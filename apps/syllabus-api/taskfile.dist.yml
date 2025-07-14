@@ -4,31 +4,6 @@ vars:
   MIGRATION_DIR: supabase/migrations
 
 tasks:
-  install:
-    desc: Install dependencies and setup environment
-    cmds:
-      - bun install --frozen-lockfile
-      - bun lefthook install
-
-  format:
-    desc: Format code
-    cmds:
-      - bunx biome format --fix
-
-  cloudflare-type-generate:
-    desc: Generate Cloudflare types
-    cmds:
-      - bun wrangler types --strict-vars false
-
-  lint:
-    desc: Run linters
-    cmds:
-      - bun tsc
-      - task: cloudflare-type-generate
-      - bunx biome check --fix --unsafe
-      - bun editorconfig-checker
-      - bun knip-bun
-
   dev:
     desc: Start local development environment with Docker
     vars:

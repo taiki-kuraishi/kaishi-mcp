@@ -6,8 +6,8 @@ import { afterEach, beforeEach, describe, expect, it } from "vitest";
 
 describe("test syllabusRouter.searchSyllabusIds", async () => {
   const transactionHelper = new TransactionTestHelper(env.DATABASE_URL);
-  const client = await prepareTrpcClient({ env, dbClient: transactionHelper.db });
   const db = transactionHelper.db;
+  const client = await prepareTrpcClient({ databaseClient: transactionHelper.db });
   const syllabusFactory = new SyllabusFactory(db);
 
   beforeEach(async () => {

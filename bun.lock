@@ -69,6 +69,7 @@
       "dependencies": {
         "@kaishi-mcp/syllabus-api-trpc-client": "workspace:*",
         "@modelcontextprotocol/sdk": "^1.13.0",
+        "zod": "^3.23.8",
       },
       "devDependencies": {
         "knip": "^5.61.2",

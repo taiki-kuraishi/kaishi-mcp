@@ -1,9 +1,15 @@
-version: '3'
+version: "3"
+
+includes:
+  syllabus-api:
+    taskfile: apps/syllabus-api
+    dir: apps/syllabus-api
 
 tasks:
   install:
     desc: Install dependencies and setup environment
     cmds:
+      - task: clean
       - bun install --frozen-lockfile
       - bun lefthook install
       - bun turbo build
@@ -20,4 +26,34 @@ tasks:
       - bun editorconfig-checker
       - turbo check:knip
       - turbo check:type
+      - bun turbo cf-typegen
       - turbo build
+
+  run:remote-mcp:
+    dir: apps/remote-mcp
+    cmds:
+      - bun run dev
+
+  run:mcp-inspector:
+    cmds:
+      - bunx @modelcontextprotocol/inspector
+
+  clean:
+    desc: Clean all cache files (node_modules, .turbo, .knip, dist, .wrangler)
+    cmds:
+      - rm -rf node_modules
+      - rm -rf .turbo
+      - rm -rf .knip
+      - rm -rf dist
+      - rm -rf .wrangler
+      - find . -name "node_modules" -type d -exec rm -rf {} +
+      - find . -name ".turbo" -type d -exec rm -rf {} +
+      - find . -name ".knip" -type d -exec rm -rf {} +
+      - find . -name "dist" -type d -exec rm -rf {} +
+      - find . -name ".wrangler" -type d -exec rm -rf {} +
+
+  dev:
+    desc: Start development server
+    cmds:
+      - bun turbo build
+      - task -p syllabus-api:dev run:remote-mcp run:mcp-inspector

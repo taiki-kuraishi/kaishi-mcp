@@ -1,5 +1,5 @@
+import { drizzleClient } from "@src/libs/drizzle-orm/clients";
 import { migrate } from "drizzle-orm/postgres-js/migrator";
-import { drizzleClient } from "../../src/libs/drizzle-orm/clients";
 
 const main = async (dbUrl: string, migrationsFolderPath: string): Promise<void> => {
   const db = drizzleClient(dbUrl);
@@ -17,6 +17,12 @@ const main = async (dbUrl: string, migrationsFolderPath: string): Promise<void> 
 if (require.main === module) {
   const dbUrl = process.argv[2];
   const migrationsFolderPath = process.argv[3];
+
+  if (!dbUrl || !migrationsFolderPath) {
+    console.error("Usage: node migrate.js <database-url> <migrations-folder-path>");
+    process.exit(1);
+  }
+
   main(dbUrl, migrationsFolderPath)
     .then(() => {
       process.exit(0);

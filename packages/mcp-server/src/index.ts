@@ -1,6 +1,8 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { SyllabusApiClient } from "./clients/syllabus-api-trpc-client";
-import { GetAllSyllabusTool } from "./tools/get-all-syllabus-tool";
+
+import { GetSyllabusById } from "./tools/get-syllabus-by-id-tool";
+import { SearchSyllabusIds } from "./tools/search-syllabus-Iids-tool";
 
 export interface KaishiMcpServerOptions {
   syllabusApiBaseUrl: string;
@@ -16,6 +18,7 @@ export class KaishiMcpServer extends McpServer {
     const syllabusApiClient = new SyllabusApiClient(options.syllabusApiBaseUrl);
 
     // register tools
-    new GetAllSyllabusTool(syllabusApiClient.client).register(this);
+    new GetSyllabusById(syllabusApiClient.client).register(this);
+    new SearchSyllabusIds(syllabusApiClient.client).register(this);
   }
 }

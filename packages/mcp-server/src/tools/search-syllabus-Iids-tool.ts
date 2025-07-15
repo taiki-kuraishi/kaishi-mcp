@@ -10,7 +10,7 @@ export class SearchSyllabusIds extends AbstractTool {
 
   register(server: McpServer): void {
     server.tool(
-      "getAllSyllabus",
+      "SearchSyllabusIds",
       "Search Syllabus IDs by Query. This tool allows you to search for syllabus IDs based on various criteria such as name, start term, end term, category, credits, day of week, period, location, isCompulsory, description, and learning objectives. The search supports partial matches for string fields.",
       {
         name: z.string().optional(),

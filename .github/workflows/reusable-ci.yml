@@ -4,11 +4,11 @@ on:
   workflow_call:
     secrets:
       SUPABASE_ACCESS_TOKEN:
-        required: true
+        required: false
       SUPABASE_DB_PASSWORD:
-        required: true
+        required: false
       SUPABASE_PROJECT_ID:
-        required: true
+        required: false
   workflow_dispatch:
 
 jobs:
@@ -132,7 +132,7 @@ jobs:
 
   supabase-ci:
     needs: change-detection
-    if: needs.change-detection.outputs.supabase == 'true'
+    if: needs.change-detection.outputs.supabase == 'true' && secrets.SUPABASE_ACCESS_TOKEN != ''
     runs-on: ubuntu-latest
     timeout-minutes: 5
     name: supabase-ci

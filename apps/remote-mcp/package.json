@@ -19,7 +19,7 @@
     "reflect-metadata": "^0.2.2"
   },
   "devDependencies": {
-    "@cloudflare/vitest-pool-workers": "^0.8.41",
+    "@cloudflare/vitest-pool-workers": "^0.8.55",
     "@cloudflare/workers-types": "^4.20250619.0",
     "@types/node": "^24.0.3",
     "knip": "^5.61.2",

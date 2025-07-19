@@ -132,7 +132,7 @@ jobs:
 
   supabase-ci:
     needs: change-detection
-    if: needs.change-detection.outputs.supabase == 'true' && secrets.SUPABASE_ACCESS_TOKEN != ''
+    if: needs.change-detection.outputs.supabase == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     name: supabase-ci
@@ -145,6 +145,13 @@ jobs:
       SUPABASE_PROJECT_ID: ${{ secrets.SUPABASE_PROJECT_ID }}
     steps:
       - uses: actions/checkout@v4
+      - name: Check if Supabase secrets are available
+        run: |
+          if [ -z "${{ secrets.SUPABASE_ACCESS_TOKEN }}" ]; then
+            echo "Supabase secrets not available, skipping supabase-ci steps"
+            exit 0
+          fi
+          echo "Supabase secrets available, proceeding with supabase-ci"
       - uses: supabase/setup-cli@v1
         with:
           version: latest
